@@ -1,7 +1,7 @@
-using ALevelBlazorTemplate.Components;
-using ALevelBlazorTemplate.Components.Account;
-using ALevelBlazorTemplate.Context;
-using ALevelBlazorTemplate.Model;
+using MyCheeseShop.Components;
+using MyCheeseShop.Components.Account;
+using MyCheeseShop.Context;
+using MyCheeseShop.Model;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 

@@ -1,8 +1,8 @@
-﻿using ALevelBlazorTemplate.Model;
+﻿using MyCheeseShop.Model;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ALevelBlazorTemplate.Context
+namespace MyCheeseShop.Context
 {
     public class DatabaseContext : IdentityDbContext<User>
     {
