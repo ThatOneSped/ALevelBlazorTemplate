@@ -11,7 +11,7 @@ using MyCheeseShop.Context;
 namespace MyCheeseShop.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240423131529_InitialCreate")]
+    [Migration("20240425080838_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
