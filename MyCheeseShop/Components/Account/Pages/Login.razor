@@ -14,22 +14,20 @@
 <StatusMessage Message="@statusMessage" IsError="@isError" />
 
 <div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card">
-        <div class="card-body bg-light">
-            <h4 class="card-title text-center">Login</h4>
+    <div class="card mt-5">
+        <div class="card-body bg-light d-flex flex-column justify-content-center align-items-center">
+            <h4 class="card-title text-center mb-4">Login</h4>
             <EditForm OnValidSubmit="LoginUser" Model="Model" FormName="loginForm">
-                <div class="row g-3">
-                    <div class="col-md-12 text-center">
-                        <label for="email" class="form-label">Email</label>
-                        <InputText @bind-Value="Model.Email" class="form-control text-center" placeholder="name@example.com" style="width: 200px;" />
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <label for="password" class="form-label">Password</label>
-                        <InputText type="password" @bind-Value="Model.Password" class="form-control text-center" placeholder="Password" style="width: 200px;" />
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </div>
+                <div class="mb-3 text-center">
+                    <label for="email" class="form-label">Email</label>
+                    <InputText @bind-Value="Model.Email" class="form-control text-center" placeholder="name@example.com" style="width: 200px;" />
+                </div>
+                <div class="mb-3 text-center">
+                    <label for="password" class="form-label">Password</label>
+                    <InputText type="password" @bind-Value="Model.Password" class="form-control text-center" placeholder="Password" style="width: 200px;" />
+                </div>
+                <div class="mb-3 text-center">
+                    <button type="submit" class="btn btn-primary">Login</button>
                 </div>
             </EditForm>
             <div class="text-center mt-3">
