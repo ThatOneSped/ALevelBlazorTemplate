@@ -57,16 +57,16 @@ namespace MyCheeseShop.Context
         {
             return
                 [
-                    new Cheese { Name = "Cheddar", Type = "Hard", Description = "Sharp and tangy", Strength = "Medium", Price = 9.99m },
-                    new Cheese { Name = "Brie", Type = "Soft", Description = "Creamy and buttery", Strength = "Mild", Price = 12.50m },
-                    new Cheese { Name = "Gouda", Type = "Semi-hard", Description = "Smooth and nutty", Strength = "Medium", Price = 11.75m },
-                    new Cheese { Name = "Parmesan", Type = "Hard", Description = "Aged and granular", Strength = "Strong", Price = 15.25m },
-                    new Cheese { Name = "Mozzarella", Type = "Soft", Description = "Mild and milky", Strength = "Mild", Price = 8.99m },
-                    new Cheese { Name = "Roquefort", Type = "Blue", Description = "Sharp and pungent", Strength = "Strong", Price = 18.75m },
-                    new Cheese { Name = "Camembert", Type = "Soft", Description = "Rich and creamy", Strength = "Mild", Price = 14.99m },
-                    new Cheese { Name = "Gruyère", Type = "Hard", Description = "Sweet and salty", Strength = "Medium", Price = 13.50m },
-                    new Cheese { Name = "Manchego", Type = "Hard", Description = "Nutty and slightly salty", Strength = "Medium", Price = 17.50m },
-                    new Cheese { Name = "Feta", Type = "Soft", Description = "Tangy and crumbly", Strength = "Medium", Price = 10.99m },
+                    new Cheese { Name = "Cheddar", Type = "Hard", Description = "Sharp and tangy", Strength = "Medium", Price = 9.99m, ImageUrl = "cheddar.png" },
+                    new Cheese { Name = "Brie", Type = "Soft", Description = "Creamy and buttery", Strength = "Mild", Price = 12.50m, ImageUrl = "brie.png" },
+                    new Cheese { Name = "Gouda", Type = "Semi-hard", Description = "Smooth and nutty", Strength = "Medium", Price = 11.75m, ImageUrl = "gouda.png" },
+                    new Cheese { Name = "Parmesan", Type = "Hard", Description = "Aged and granular", Strength = "Strong", Price = 15.25m, ImageUrl = "parmesan.png" },
+                    new Cheese { Name = "Mozzarella", Type = "Soft", Description = "Mild and milky", Strength = "Mild", Price = 8.99m, ImageUrl = "mozzarela.png" },
+                    new Cheese { Name = "Roquefort", Type = "Blue", Description = "Sharp and pungent", Strength = "Strong", Price = 18.75m, ImageUrl = ""},
+                    new Cheese { Name = "Camembert", Type = "Soft", Description = "Rich and creamy", Strength = "Mild", Price = 14.99m, ImageUrl = "camembert.png" },
+                    new Cheese { Name = "Gruyère", Type = "Hard", Description = "Sweet and salty", Strength = "Medium", Price = 13.50m, ImageUrl = "gruyére.png" },
+                    new Cheese { Name = "Manchego", Type = "Hard", Description = "Nutty and slightly salty", Strength = "Medium", Price = 17.50m, ImageUrl = "manchego"},
+                    new Cheese { Name = "Feta", Type = "Soft", Description = "Tangy and crumbly", Strength = "Medium", Price = 10.99m, ImageUrl = "feta.png" },
                 ];
         }
     }
