@@ -1,29 +1,41 @@
 ﻿@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
 @using MyCheeseShop.Model
 @using MyCheeseShop.Context
+@using MyCheeseShop.Components
 @inject ProtectedSessionStorage ProtectedSessionStore
 @inject ShoppingCart ShoppingCart
+@inject CheeseProvider CheeseProvider
 
 
 <div class="container">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-4">
-            <div class="col">
-                <div class="card border-0 shadow-sm">
-                    <img src="@Cheese.ImageUrl" class="card-img-top" alt="@Cheese.Name">
-                    <div class="card-body">
-                        <h5 class="card-title">@Cheese.Name</h5>
-                        <p class="card-text">Price: $@Cheese.Price</p>
-                        <EditForm Model="this" OnSubmit="AddToCart">
-                            <div class="mb-3">
-                                <label for="quantityInput_@Cheese.Id" class="form-label">Quantity:</label>
-                                <input type="number" class="form-control" id="quantityInput_@Cheese.Id" @bind="@quantity" />
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-sm">Add to Basket</button>
-                        </EditForm>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        <div class="col" style="max-width: 25%;">
+            <div class="card h-100">
+                <img src="/img/cheeses/@Cheese.ImageUrl" class="card-img-top p-1" alt="@Cheese.Name" onerror="this.onerror = null; this.src='/img/no_cheese.png'">
+                <div class="card-body">
+                    <h5 class="card-title">@Cheese.Name</h5>
+                    <p class="card-text">Type: <span class="badge bg-primary">@Cheese.Type</span></p>
+                    <p class="card-text">Strength: <span class="badge bg-success">@Cheese.Strength</span></p>
+                    <p class="card-text">Price: <span class="badge bg-danger">@Cheese.Price.ToString("C")</span></p>
+                    <p class="card-text">@Cheese.Description</p>
 
-                    </div>
+                    <EditForm Model="@quantity" OnSubmit="@AddToCart">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="quantitySelect">Quantity:</label>
+                            <select class="form-select" id="quantitySelect" @bind="@quantity">
+                                @for (var i = 1; i <= 5; i++)
+                                {
+                                    <option value="@i">@($"{i * 100}g")</option>
+                                }
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            Add to Cart
+                        </button>
+                    </EditForm>
                 </div>
             </div>
+        </div>
     </div>
 </div>
 

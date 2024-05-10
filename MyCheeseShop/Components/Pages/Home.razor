@@ -1,7 +1,12 @@
 ﻿@page "/"
+@inject NavigationManager NavigationManager
 @inject Context.CheeseProvider CheeseProvider
+@inject ShoppingCart ShoppingCart
+@using MyCheeseShop.Model
 
 <PageTitle>Cheeses</PageTitle>
+
+<input type="text" placeholder="Search for cheese..." @bind="searchTerm" @bind:event="oninput">
 
 @if (cheeses is null)
 {
@@ -12,16 +17,31 @@ else if (!cheeses.Any())
     <p>:( No cheese found :(</p>
 }
 
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-4">
+        @foreach (var cheese in FilteredCheeses)
+        {
+            <div class="col">
+                <StoreItem Cheese="cheese"/>
+            </div>
+        }
+        @if (!FilteredCheeses.Any())
+        {
+            <p>:( No cheese found :(</p>
+        }
+    </div>
+</div>
+
 
 <div class="container">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-4">
-        @foreach (var cheese in cheeses)
+        @foreach (var cheese in FilteredCheeses)
         {
            <div class="col">
                <StoreItem Cheese="cheese"/>
            </div>
         }
-        @if (!cheeses.Any())
+        @if (!FilteredCheeses.Any())
         {
             <p>:( No cheese found :(</p>
         }
@@ -31,9 +51,62 @@ else if (!cheeses.Any())
 
 @code {
     private IEnumerable<Model.Cheese> cheeses;
+    private string searchTerm = "";
+    private SortCriteria sortCriteria = SortCriteria.Name;
+
+    private IEnumerable<Cheese> filteredCheeses;
+    private IEnumerable<Cheese> FilteredCheeses
+    {
+        get
+        {
+            return filteredCheeses.Where(GetSearchCriteria);
+        }
+        set
+        {
+            filteredCheeses = value;
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
         cheeses = await CheeseProvider.GetAllCheesesAsync();
+        filteredCheeses = cheeses;
+        ShoppingCart.OnCartUpdated += StateHasChanged;
+    }
+
+    private void GoToCart()
+    {
+        NavigationManager.NavigateTo("/cart");
+    }
+
+    private bool GetSearchCriteria(Cheese cheese)
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm)) return true;
+
+        return cheese.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
+            || cheese.Type.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
+            || cheese.Description.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
+            || cheese.Strength.Contains(searchTerm, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private void Sort(SortCriteria criteria)
+    {
+        sortCriteria = criteria;
+        filteredCheeses = criteria switch
+        {
+            SortCriteria.Name => FilteredCheeses = filteredCheeses.OrderBy(c => c.Name),
+            SortCriteria.Price => FilteredCheeses = filteredCheeses.OrderBy(c => c.Price),
+            SortCriteria.Type => FilteredCheeses = filteredCheeses.OrderBy(c => c.Type),
+            SortCriteria.Strength => FilteredCheeses = filteredCheeses.OrderBy(c => c.Strength),
+            _ => filteredCheeses
+        };
+    }
+
+    private enum SortCriteria
+    {
+        Name,
+        Price,
+        Type,
+        Strength
     }
 }
