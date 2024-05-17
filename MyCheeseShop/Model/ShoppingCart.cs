@@ -74,14 +74,14 @@ namespace MyCheeseShop.Model
 
         public int GetQuantity(Cheese cheese)
         {
-            // return the quantity of the cheese in the cart
+            // return quantity of the cheese in the cart
             var item = Items.FirstOrDefault(item => item.Cheese.Id == cheese.Id);
             return item?.Quantity ?? 0;
         }
 
         public void SetItems(IEnumerable<OrderItem> items)
         {
-            // set the items in the cart
+            // set items in the cart
             Items = items.ToList();
             OnCartUpdated?.Invoke();
         }
