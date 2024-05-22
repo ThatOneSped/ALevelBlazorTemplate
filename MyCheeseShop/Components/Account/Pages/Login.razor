@@ -22,19 +22,19 @@
             <h4 class="card-title text-center mb-4">Login</h4>
             <EditForm OnValidSubmit="LoginUser" Model="Model" FormName="loginForm">
                 <div class="mb-3 text-center">
-                    <label for="email" class="form-label">Email</label>
-                    <InputText @bind-Value="Model.Email" class="form-control text-center" placeholder="name@example.com" style="width: 200px;" />
+                    <label for="email" class="form-label w-100 text-center">Email</label>
+                    <InputText id="email" @bind-Value="Model.Email" class="form-control text-center" placeholder="name@example.com" style="width: 200px;" />
                 </div>
                 <div class="mb-3 text-center">
-                    <label for="password" class="form-label">Password</label>
-                    <InputText type="password" @bind-Value="Model.Password" class="form-control text-center" placeholder="Password" style="width: 200px;" />
+                    <label for="password" class="form-label w-100 text-center">Password</label>
+                    <InputText id="password" type="password" @bind-Value="Model.Password" class="form-control text-center" placeholder="Password" style="width: 200px;" />
                 </div>
                 <div class="mb-3 text-center">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary" style="width: 200px;">Login</button>
                 </div>
             </EditForm>
             <div class="text-center mt-3">
-                <a href="@(NavigationManager.ToAbsoluteUri("Account/Register"))" class="btn btn-success">Register</a>
+                <a href="@(NavigationManager.ToAbsoluteUri("Account/Register"))" class="btn btn-success" style="width: 200px;">Register</a>
             </div>
         </div>
     </div>

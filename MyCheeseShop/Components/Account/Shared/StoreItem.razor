@@ -7,37 +7,51 @@
 @inject CheeseProvider CheeseProvider
 
 
-<div class="container">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-        <div class="col" style="max-width: 25%;">
-            <div class="card h-100">
-                <img src="/img/cheeses/@Cheese.ImageUrl" class="card-img-top p-1" alt="@Cheese.Name" onerror="this.onerror = null; this.src='/img/no_cheese.png'">
-                <div class="card-body">
-                    <h5 class="card-title">@Cheese.Name</h5>
-                    <p class="card-text">Type: <span class="badge bg-primary">@Cheese.Type</span></p>
-                    <p class="card-text">Strength: <span class="badge bg-success">@Cheese.Strength</span></p>
-                    <p class="card-text">Price: <span class="badge bg-danger">@Cheese.Price.ToString("C")</span></p>
-                    <p class="card-text">@Cheese.Description</p>
 
-                    <EditForm Model="@quantity" OnSubmit="@AddToCart">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="quantitySelect">Quantity:</label>
-                            <select class="form-select" id="quantitySelect" @bind="@quantity">
-                                @for (var i = 1; i <= 5; i++)
-                                {
-                                    <option value="@i">@($"{i * 100}g")</option>
-                                }
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">
-                            Add to Cart
-                        </button>
-                    </EditForm>
-                </div>
+<div class="card h-100">
+    <img src="/img/cheeses/@Cheese.ImageUrl" class="card-img-top p-1" alt="@Cheese.Name" onerror="this.onerror = null; this.src='/img/no_cheese.png'">
+    <div class="card-body d-flex flex-column">
+        <h5>
+            <span class="badge bg-primary">@Cheese.Type</span>
+            <span class="badge bg-success">@Cheese.Strength</span>
+        </h5>
+        <div class="d-flex flex-column flex-sm-row justify-content-between">
+            <h5 class="card-title">@Cheese.Name</h5>
+            <h5><span class="badge bg-danger">@Cheese.Price.ToString("C")</span></h5>
+        </div>
+        <div class="card-text">@Cheese.Description</div>
+        <div class="mt-auto">
+            <div class="d-flex justify-content-start mb-1">
+                <StarRating Cheese="Cheese" />
             </div>
+            <EditForm Model="quantity" OnSubmit="AddToCart">
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <InputSelect class="form-select w-100" @bind-Value="quantity" required>
+                            @for (var i = 1; i <= 5; i++)
+                            {
+                                <option value="@i">@(i * 100)g</option>
+                            }
+                        </InputSelect>
+                    </div>
+                    <div class="col-lg-6 col-12 mt-lg-0 mt-1">
+                        <button class="btn btn-primary position-relative w-100">
+                            Add to cart
+                            @if (ShoppingCart.GetQuantity(Cheese) > 0)
+                            {
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    @(ShoppingCart.GetQuantity(Cheese) * 100)g
+                                    <span class="visually-hidden">@Cheese.Name in shopping cart</span>
+                                </span>
+                            }
+                        </button>
+                    </div>
+                </div>
+            </EditForm>
         </div>
     </div>
 </div>
+
 
 
 

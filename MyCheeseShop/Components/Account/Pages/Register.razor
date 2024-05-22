@@ -18,27 +18,24 @@
 <PageTitle>Register</PageTitle>
 <StatusMessage Message="@statusMessage" IsError="@isError" />
 
-<div class="card">
-    <div class="card-body bg-light">
+<div class="card mx-auto" style="max-width: 400px;">
+    <div class="card-body bg-light text-center">
         <h4 class="card-title">Register</h4>
-
         <EditForm OnValidSubmit="RegisterUser" Model="Model" FormName="registerForm">
-            <div class="row g-3">
-                <div class="col-md-12">
-                    <label for="email" class="form-label">Email</label>
-                    <InputText class="form-control" placeholder="Email" @bind-Value="Model.Email" />
-                </div>
-                <div class="col-md-6">
-                    <label for="password" class="form-label">Password</label>
-                    <InputText type="password" class="form-control" placeholder="Password" @bind-Value="Model.Password" />
-                </div>
-                <div class="col-md-6">
-                    <label for="name" class="form-label">Confirm Password</label>
-                    <InputText type="password" class="form-control" placeholder="Confirm Password" @bind-Value="Model.ConfirmPassword" />
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary w-100">Register</button>
-                </div>
+            <div class="mb-3">
+                <label for="email" class="form-label w-100 text-center">Email</label>
+                <InputText id="email" class="form-control text-center" placeholder="Email" @bind-Value="Model.Email" />
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label w-100 text-center">Password</label>
+                <InputText id="password" type="password" class="form-control text-center" placeholder="Password" @bind-Value="Model.Password" />
+            </div>
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label w-100 text-center">Confirm Password</label>
+                <InputText id="confirmPassword" type="password" class="form-control text-center" placeholder="Confirm Password" @bind-Value="Model.ConfirmPassword" />
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Register</button>
             </div>
         </EditForm>
     </div>
